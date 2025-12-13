@@ -6,7 +6,7 @@ import 'package:flutter_nhom2/list/bai3_guide_to_layout.dart';
 import 'package:flutter_nhom2/list/bai4_my_classroom.dart';
 import 'package:flutter_nhom2/list/bai5_changer_color_app.dart';
 import 'package:flutter_nhom2/list/bai6_counter_app.dart';
-//
+import 'package:flutter_nhom2/list/bai7_counter_time.dart';
 import 'package:flutter_nhom2/list/bai8_tinh_bmi.dart';
 import 'package:flutter_nhom2/list/bai9_form_dang_nhap.dart';
 import 'package:flutter_nhom2/list/bai12_my_product.dart';
@@ -34,10 +34,10 @@ class HomePage extends StatelessWidget {
         padding: const EdgeInsets.all(12),
         itemCount: _items.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,        // ✅ 2 cột
+          crossAxisCount: 2,
           crossAxisSpacing: 12,
           mainAxisSpacing: 12,
-          childAspectRatio: 1,      // ✅ Hình vuông 1:1
+          childAspectRatio: 1,
         ),
         itemBuilder: (context, index) {
           final item = _items[index];
@@ -67,7 +67,7 @@ final List<HomeItem> _items = [
   HomeItem(title: "Bài 4", icon: Icons.class_, page: const MyClassroom()),
   HomeItem(title: "Bài 5", icon: Icons.color_lens, page: const ChangeColorApp()),
   HomeItem(title: "Bài 6", icon: Icons.plus_one, page: const CounterApp()),
-  //
+  HomeItem(title: "Bài 7", icon: Icons.timer, page: const CounterTime()),
   HomeItem(title: "Bài 8", icon: Icons.monitor_weight, page: const TinhBMI()),
   HomeItem(title: "Bài 9", icon: Icons.login, page: const FormDangNhap()),
   HomeItem(title: "Bài 12", icon: Icons.shopping_cart, page: const MyProduct()),

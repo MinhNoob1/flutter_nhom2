@@ -21,11 +21,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   void loadData() async {
     final result = await authService.getProfile();
-
     if (!mounted) return;
-
     if (result == null) {
       await authService.logout();
+      if (!mounted) return;
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (_) => const FormDangNhap()),
@@ -50,7 +49,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             icon: const Icon(Icons.logout),
             onPressed: () async {
               await authService.logout();
-              if (!mounted) return;
+              if (!context.mounted) return;
               Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(builder: (_) => const FormDangNhap()),

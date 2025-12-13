@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_nhom2/list/bai14_profile_screen.dart';
-import 'package:flutter_nhom2/my_drawer.dart';
+
+import 'package:flutter_nhom2/list/bai14_profile_screen.dart'; 
+import 'package:flutter_nhom2/my_drawer.dart'; 
 import 'package:flutter_nhom2/service/auth_api.dart';
 
 class FormDangNhap extends StatefulWidget {
@@ -16,22 +17,30 @@ class _FormDangNhapState extends State<FormDangNhap> {
   final _password = TextEditingController();
   bool _obscure = true;
 
-  Future<void> _login(BuildContext context) async {
-    if (!_formKey.currentState!.validate()) return;
-    final user = _username.text.trim();
-    final pass = _password.text.trim();
-    bool success = await authService.login(user, pass);
-    if (success) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (_) => const ProfileScreen()),
-      );
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Sai username hoặc password!")),
-      );
-    }
+Future<void> _login() async {
+  if (!_formKey.currentState!.validate()) return;
+  FocusScope.of(context).unfocus();
+
+  final user = _username.text.trim();
+  final pass = _password.text.trim();
+
+  final navigator = Navigator.of(context);
+  final messenger = ScaffoldMessenger.of(context);
+
+  bool success = await authService.login(user, pass);
+
+  if (!mounted) return;
+
+  if (success) {
+    navigator.pushReplacement(
+      MaterialPageRoute(builder: (_) => const ProfileScreen()),
+    );
+  } else {
+    messenger.showSnackBar(
+      const SnackBar(content: Text("Sai username hoặc password!")),
+    );
   }
+}
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +58,6 @@ class _FormDangNhapState extends State<FormDangNhap> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-
               // Username
               TextFormField(
                 controller: _username,
@@ -84,9 +92,17 @@ class _FormDangNhapState extends State<FormDangNhap> {
               const SizedBox(height: 24),
 
               // Login Button
-              ElevatedButton(
-                onPressed: () => _login(context),
-                child: const Text("Đăng nhập"),
+              SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: ElevatedButton(
+                  onPressed: _login,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.purple,
+                    foregroundColor: Colors.white,
+                  ),
+                  child: const Text("Đăng nhập", style: TextStyle(fontSize: 18)),
+                ),
               ),
             ],
           ),
@@ -94,5 +110,4 @@ class _FormDangNhapState extends State<FormDangNhap> {
       ),
     );
   }
-
 }

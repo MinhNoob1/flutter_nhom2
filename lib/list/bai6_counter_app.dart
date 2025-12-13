@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_nhom2/my_drawer.dart';
 
 class CounterApp extends StatefulWidget {
   const CounterApp({super.key});
@@ -14,7 +15,6 @@ class _CounterAppState extends State<CounterApp> {
     return Colors.red;
   }
 
-  // Các hàm xử lý nút
   void increase() => setState(() => counter++);
   void decrease() => setState(() => counter--);
   void reset() => setState(() => counter = 0);
@@ -23,10 +23,11 @@ class _CounterAppState extends State<CounterApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('📱 Ứng dụng Đếm số'),
+        title: const Text('Ứng dụng Đếm số'),
         backgroundColor: Colors.blue,
         centerTitle: true,
       ),
+      drawer: const MyDrawer(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

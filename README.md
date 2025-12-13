@@ -1,6 +1,6 @@
 # flutter_nhom2
 
-A new Flutter project.
+Danh sách các bài tập đã làm của Nhóm 2 - Lập trình ứng dụng di động
 
 ## Getting Started
 

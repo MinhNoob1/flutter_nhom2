@@ -23,7 +23,7 @@ class _CounterAppState extends State<CounterApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Ứng dụng Đếm số'),
+        title: const Text('Đếm Số'),
         backgroundColor: Colors.blue,
         centerTitle: true,
       ),

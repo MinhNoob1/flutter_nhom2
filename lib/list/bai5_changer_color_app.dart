@@ -99,7 +99,7 @@ class _ChangeColorAppState extends State<ChangeColorApp> {
 
   PreferredSizeWidget myAppBar() {
     return AppBar(
-      title: const Text("Ứng dụng đổi màu"),
+      title: const Text("Đổi Màu"),
       backgroundColor: Colors.teal,
       foregroundColor: Colors.white,
       centerTitle: true,

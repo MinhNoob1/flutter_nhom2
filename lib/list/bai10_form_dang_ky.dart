@@ -37,7 +37,7 @@ class _FormDangKyState extends State<FormDangKy> {
       appBar: AppBar(
         backgroundColor: Colors.purple,
         title: const Text(
-          'Đăng ký tài khoản',
+          'Đăng Ký',
           style: TextStyle(color: Colors.white),
           ),
         centerTitle: true,

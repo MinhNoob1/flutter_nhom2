@@ -8,7 +8,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Bài 1 - Hello World"),
+        title: const Text("Bài Đầu Tiên"),
         centerTitle: true,
       ),
       drawer: const MyDrawer(),

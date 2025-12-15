@@ -8,7 +8,7 @@ class MyPlace extends StatelessWidget {
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Bài 2 - My Place"),
+        title: const Text("Phong Cảnh"),
         centerTitle: true,
       ),
       drawer: const MyDrawer(),
@@ -24,12 +24,12 @@ class MyPlace extends StatelessWidget {
   }
   
   Widget block1() {
-    var src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSx_O5MGUkfRtSyM07PAV1RElEL0L4R214o6Q&s";
+    var src = "https://statics.vinwonders.com/Anh%202%20Nui%20Bach%20Ma%20Hue_1624594895.jpg";
     return Image.network(src);
   }
   Widget block2(){
-    var title ="Tet trung thu";
-    var subtitle ="Van hoa Viet Nam";
+    var title ="Núi Bạch Mã - Huế";
+    var subtitle ="Địa điểm du lịch tại Việt Nam";
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: Row(
@@ -52,7 +52,7 @@ class MyPlace extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Icon(Icons.star, color: Colors.red,),
-              Text("41")
+              Text("36")
             ],
           )
         ],
@@ -88,7 +88,7 @@ class MyPlace extends StatelessWidget {
     );
   }
   Widget block4() {
-    var data ="Tết Trung thu còn được gọi là Tết trông Trăng hay Tết hoa đăng theo Âm lịch là ngày Rằm tháng 8 hằng năm, là một lễ hội truyền thống được kỉ niệm ở văn hóa của Việt Nam.";
+    var data ="Núi Bạch Mã Huế là điểm nghỉ mát nổi tiếng của Việt Nam, nơi có nhiều con suối trong lành và những ngọn thác ngoạn mục khiến nhiều du khách phải ngẩn ngơ. Ai cũng mong được đến đây để ngắm nhìn vẻ đẹp lung linh của thành phố Huế, của đèo Hải Vân,... trong tầm mắt.";
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: Text(data),

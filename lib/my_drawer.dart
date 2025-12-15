@@ -22,10 +22,7 @@ class MyDrawer extends StatelessWidget {
 
   void _go(BuildContext context, Widget page) {
     Navigator.pop(context);
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (_) => page),
-    );
+    Navigator.push(context, MaterialPageRoute(builder: (_) => page));
   }
 
   @override
@@ -34,18 +31,29 @@ class MyDrawer extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          const DrawerHeader(
-            decoration: BoxDecoration(color: Colors.purple),
-            child: Center(
-              child: Text(
-                "BÀI TẬP",
-                style: TextStyle(color: Colors.white, fontSize: 20),
+          UserAccountsDrawerHeader(
+            decoration: const BoxDecoration(color: Colors.purple),
+            currentAccountPicture: CircleAvatar(
+              backgroundColor: Colors.white,
+              child: const Image(
+                image: NetworkImage(
+                  "https://i1.sndcdn.com/avatars-zAo5N9j7XXVVwKPC-6lrkmw-t1080x1080.jpg",
+                ),
               ),
             ),
+            accountName: const Text(
+              "Hồ Công Minh",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+            ),
+            accountEmail: const Text("22T1080075"),
           ),
-                    ListTile(
-            leading: const Icon(Icons.home),
-            title: const Text("Trang chủ"),
+
+          ListTile(
+            leading: const Icon(Icons.home, color: Colors.purple),
+            title: const Text(
+              "Trang chủ",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
             onTap: () {
               Navigator.pushAndRemoveUntil(
                 context,
@@ -55,22 +63,21 @@ class MyDrawer extends StatelessWidget {
             },
           ),
 
-          const Divider(),
-
-          _item(context, "Bài 1 - Home Page", const MyHomePage()),
-          _item(context, "Bài 2 - My Place", const MyPlace()),
-          _item(context, "Bài 3 - Guide Layout", const GuideToLayout()),
-          _item(context, "Bài 4 - Classroom", const MyClassroom()),
-          _item(context, "Bài 5 - Change Color", const ChangeColorApp()),
-          _item(context, "Bài 6 - Counter", const CounterApp()),
-          _item(context, "Bài 7 - Counter Time", const CounterTime()),
-          _item(context, "Bài 8 - BMI", const TinhBMI()),
-          _item(context, "Bài 9 - Login", const FormDangNhap()),
-          _item(context, "Bài 10 - Register", const FormDangKy()),
-          _item(context, "Bài 11 - Feedback", const FormGuiPhanHoi()),
-          _item(context, "Bài 12 - Product", const MyProduct()),
-          _item(context, "Bài 13 - News", const NewsList()),
-          _item(context, "Bài 14 - Profile", const ProfileScreen()),
+          _item(context, "Bài 1 - Bài Đầu Tiên", const MyHomePage()),
+          _item(context, "Bài 2 - Phong Cảnh", const MyPlace()),
+          _item(context, "Bài 3 - Bố Cục", const GuideToLayout()),
+          _item(context, "Bài 4 - Lớp Học", const MyClassroom()),
+          _item(context, "Bài 5 - Đổi Màu", const ChangeColorApp()),
+          _item(context, "Bài 6 - Đếm Số", const CounterApp()),
+          _item(context, "Bài 7 - Đếm Ngược Thời Gian", const CounterTime()),
+          _item(context, "Bài 8 - Tính BMI", const TinhBMI()),
+          _item(context, "Bài 9 - Đăng Nhập", const FormDangNhap()),
+          _item(context, "Bài 10 - Đăng Ký", const FormDangKy()),
+          _item(context, "Bài 11 - Gửi Phản Hồi", const FormGuiPhanHoi()),
+          _item(context, "Bài 12 - Thương Mại Điện Tử", const MyProduct()),
+          _item(context, "Bài 13 - Tin Tức", const NewsList()),
+          _item(context, "Bài 14 - Hồ Sơ Cá Nhân", const ProfileScreen()),
+          const SizedBox(height: 20),
         ],
       ),
     );
@@ -79,7 +86,7 @@ class MyDrawer extends StatelessWidget {
   Widget _item(BuildContext context, String title, Widget page) {
     return ListTile(
       title: Text(title),
-      leading: const Icon(Icons.arrow_right),
+      leading: const Icon(Icons.arrow_right, color: Colors.grey),
       onTap: () => _go(context, page),
     );
   }

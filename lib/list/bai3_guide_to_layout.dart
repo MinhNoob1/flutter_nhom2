@@ -8,7 +8,7 @@ class GuideToLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Bài 3 - Guide to Layout"),
+        title: const Text("Bố Cục"),
         centerTitle: true,
       ),
       drawer: const MyDrawer(),
@@ -32,7 +32,6 @@ class GuideToLayout extends StatelessWidget {
               ),
               const SizedBox(height: 20),
 
-              // RichText
               RichText(
                 text: TextSpan(
                   style: TextStyle(fontSize: 28, color: Colors.black),
@@ -44,7 +43,7 @@ class GuideToLayout extends StatelessWidget {
                       ),
                     ),
                     TextSpan(
-                      text: "Charlie",
+                      text: "Hồ Công Minh",
                       style: TextStyle(
                         fontSize: 24
                       ),
@@ -57,19 +56,16 @@ class GuideToLayout extends StatelessWidget {
               // Ô tìm kiếm
               TextField(
                 decoration: InputDecoration(
-                  // OutlineInputBorder
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  // prefixIcon
                   prefixIcon: const Icon(Icons.search),
-                  // hintText
-                  hintText: "Search",
+                  hintText: "Tìm kiếm",
                 ),
               ),
               const SizedBox(height: 30),
 
-              // Tiêu đề Saved Places
+              // Tiêu đề
               const Text(
                 "Saved Places",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),

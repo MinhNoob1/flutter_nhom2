@@ -4,7 +4,7 @@ Danh sách các bài tập đã làm của Nhóm 2 - Lập trình ứng dụng d
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+[Tải file tại đây](https://github.com/MinhNoob1/flutter_nhom2/releases/download/v1.0.0/app-release.apk)
 
 A few resources to get you started if this is your first Flutter project:
 

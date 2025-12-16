@@ -32,8 +32,9 @@ class MyDrawer extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: [
           UserAccountsDrawerHeader(
-            decoration: const BoxDecoration(color: Colors.purple),
+            decoration: const BoxDecoration(color: Colors.blue),
             currentAccountPicture: CircleAvatar(
+              radius: 50,
               backgroundColor: Colors.white,
               child: const Image(
                 image: NetworkImage(
@@ -45,11 +46,14 @@ class MyDrawer extends StatelessWidget {
               "Hồ Công Minh",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
             ),
-            accountEmail: const Text("22T1080075"),
+            accountEmail: const Text(
+              "22T1080075",
+              style: TextStyle(fontSize: 14),
+            ),
           ),
 
           ListTile(
-            leading: const Icon(Icons.home, color: Colors.purple),
+            leading: const Icon(Icons.home, color: Colors.blue),
             title: const Text(
               "Trang chủ",
               style: TextStyle(fontWeight: FontWeight.bold),
@@ -62,7 +66,7 @@ class MyDrawer extends StatelessWidget {
               );
             },
           ),
-
+          const Divider(),
           _item(context, "Bài 1 - Bài Đầu Tiên", const MyHomePage()),
           _item(context, "Bài 2 - Phong Cảnh", const MyPlace()),
           _item(context, "Bài 3 - Bố Cục", const GuideToLayout()),

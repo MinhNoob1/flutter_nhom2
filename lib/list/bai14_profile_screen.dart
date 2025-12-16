@@ -19,27 +19,40 @@ class _ProfileScreenState extends State<ProfileScreen> {
     loadData();
   }
 
-  void loadData() async {
-    final result = await authService.getProfile();
+void loadData() async {
+  final result = await authService.getProfile();
+  if (!mounted) return;
 
+  if (result == null) {
+    await authService.logout();
     if (!mounted) return;
 
-    if (result == null) {
-      // Xử lý logout an toàn (Capture references pattern)
-      final navigator = Navigator.of(context);
-      await authService.logout();
-      if (mounted) {
-         navigator.pushAndRemoveUntil(
-          MaterialPageRoute(builder: (_) => const FormDangNhap()),
-          (route) => false,
-        );
-      }
-    } else {
-      setState(() {
-        data = result;
-      });
-    }
+    await showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) => AlertDialog(
+        title: const Text("Hết phiên đăng nhập"),
+        content: const Text("Vui lòng đăng nhập lại để tiếp tục."),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text("OK"),
+          ),
+        ],
+      ),
+    );
+    if (!mounted) return;
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (_) => const FormDangNhap()),
+      (route) => false,
+    );
+  } else {
+    setState(() {
+      data = result;
+    });
   }
+}
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +69,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
           IconButton(
             icon: const Icon(Icons.logout),
             onPressed: () async {
-              // Xử lý logout an toàn
               final navigator = Navigator.of(context);
               await authService.logout();
               if (navigator.context.mounted) {
@@ -74,10 +86,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           : SingleChildScrollView(
               child: Column(
                 children: [
-                  // --- PHẦN 1: HEADER (AVATAR & TÊN) ---
                   _buildHeader(),
-
-                  // --- PHẦN 2: THÔNG TIN CHI TIẾT ---
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
@@ -111,7 +120,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  // Widget con: Phần Header màu tím chứa Avatar
   Widget _buildHeader() {
     return Container(
       width: double.infinity,
@@ -126,7 +134,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
       child: Column(
         children: [
           const SizedBox(height: 10),
-          // Avatar có viền trắng
           Container(
             padding: const EdgeInsets.all(4),
             decoration: BoxDecoration(
@@ -145,7 +152,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
           const SizedBox(height: 15),
-          // Tên đầy đủ
+
           Text(
             "${data!['firstName']} ${data!['lastName']}",
             style: const TextStyle(
@@ -155,7 +162,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
           const SizedBox(height: 5),
-          // Chức danh công việc (nếu có)
+
           Text(
             data!['company']?['title'] ?? "Người dùng",
             style: TextStyle(
@@ -168,7 +175,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  // Widget con: Khung chứa thông tin (Card)
   Widget _buildInfoCard(String title, List<Widget> children) {
     return Card(
       elevation: 4,
@@ -194,7 +200,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  // Widget con: Từng dòng thông tin nhỏ
   Widget _buildRow(IconData icon, String label, String? value) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),

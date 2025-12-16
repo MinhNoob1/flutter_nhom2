@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_nhom2/list/bai14_profile_screen.dart'; 
-import 'package:flutter_nhom2/my_drawer.dart'; 
+import 'package:flutter_nhom2/list/bai14_profile_screen.dart';
+import 'package:flutter_nhom2/my_drawer.dart';
 import 'package:flutter_nhom2/service/auth_api.dart';
 
 class FormDangNhap extends StatefulWidget {
@@ -16,31 +16,27 @@ class _FormDangNhapState extends State<FormDangNhap> {
   final _username = TextEditingController();
   final _password = TextEditingController();
   bool _obscure = true;
+  String? _loginError;
 
-Future<void> _login() async {
-  if (!_formKey.currentState!.validate()) return;
-  FocusScope.of(context).unfocus();
-
-  final user = _username.text.trim();
-  final pass = _password.text.trim();
-
-  final navigator = Navigator.of(context);
-  final messenger = ScaffoldMessenger.of(context);
-
-  bool success = await authService.login(user, pass);
-
-  if (!mounted) return;
-
-  if (success) {
-    navigator.pushReplacement(
-      MaterialPageRoute(builder: (_) => const ProfileScreen()),
-    );
-  } else {
-    messenger.showSnackBar(
-      const SnackBar(content: Text("Sai username hoặc password!")),
-    );
+  Future<void> _login() async {
+    if (!_formKey.currentState!.validate()) return;
+    FocusScope.of(context).unfocus();
+    final user = _username.text.trim();
+    final pass = _password.text.trim();
+    final navigator = Navigator.of(context);
+    setState(() => _loginError = null); 
+    bool success = await authService.login(user, pass);
+    if (!mounted) return;
+    if (success) {
+      navigator.pushReplacement(
+        MaterialPageRoute(builder: (_) => const ProfileScreen()),
+      );
+    } else {
+      setState(() {
+        _loginError = "Tên đăng nhập hoặc mật khẩu không đúng";
+      });
+    }
   }
-}
 
   @override
   Widget build(BuildContext context) {
@@ -80,13 +76,20 @@ Future<void> _login() async {
                   labelText: "Mật khẩu",
                   prefixIcon: const Icon(Icons.lock),
                   border: const OutlineInputBorder(),
+                  errorText: _loginError,
                   suffixIcon: IconButton(
-                    icon: Icon(_obscure ? Icons.visibility_off : Icons.visibility),
+                    icon: Icon(
+                      _obscure ? Icons.visibility_off : Icons.visibility,
+                    ),
                     onPressed: () => setState(() => _obscure = !_obscure),
                   ),
                 ),
-                validator: (v) =>
-                    v!.isEmpty ? "Vui lòng nhập mật khẩu" : null,
+                validator: (v) => v!.isEmpty ? "Vui lòng nhập mật khẩu" : null,
+                onChanged: (_) {
+                  if (_loginError != null) {
+                    setState(() => _loginError = null);
+                  }
+                },
               ),
 
               const SizedBox(height: 24),
@@ -101,7 +104,10 @@ Future<void> _login() async {
                     backgroundColor: Colors.purple,
                     foregroundColor: Colors.white,
                   ),
-                  child: const Text("Đăng nhập", style: TextStyle(fontSize: 18)),
+                  child: const Text(
+                    "Đăng nhập",
+                    style: TextStyle(fontSize: 18),
+                  ),
                 ),
               ),
             ],

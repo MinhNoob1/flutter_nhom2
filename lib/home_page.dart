@@ -28,6 +28,7 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
+        
       ),
       drawer: const MyDrawer(),
       body: GridView.builder(
@@ -35,8 +36,8 @@ class HomePage extends StatelessWidget {
         itemCount: _items.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          crossAxisSpacing: 12,
-          mainAxisSpacing: 12,
+          crossAxisSpacing: 16,
+          mainAxisSpacing: 16,
           childAspectRatio: 1,
         ),
         itemBuilder: (context, index) {

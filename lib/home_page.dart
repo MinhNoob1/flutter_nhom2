@@ -9,6 +9,8 @@ import 'package:flutter_nhom2/list/bai6_counter_app.dart';
 import 'package:flutter_nhom2/list/bai7_counter_time.dart';
 import 'package:flutter_nhom2/list/bai8_tinh_bmi.dart';
 import 'package:flutter_nhom2/list/bai9_form_dang_nhap.dart';
+import 'package:flutter_nhom2/list/bai10_form_dang_ky.dart';
+import 'package:flutter_nhom2/list/bai11_form_gui_phan_hoi.dart';
 import 'package:flutter_nhom2/list/bai12_my_product.dart';
 import 'package:flutter_nhom2/list/bai13_news_list.dart';
 import 'package:flutter_nhom2/list/bai14_profile_screen.dart';
@@ -71,6 +73,8 @@ final List<HomeItem> _items = [
   HomeItem(title: "Bài 7", icon: Icons.timer, page: const CounterTime()),
   HomeItem(title: "Bài 8", icon: Icons.monitor_weight, page: const TinhBMI()),
   HomeItem(title: "Bài 9", icon: Icons.login, page: const FormDangNhap()),
+  HomeItem(title: "Bài 10", icon: Icons.app_registration, page: const FormDangKy()),
+  HomeItem(title: "Bài 11", icon: Icons.feedback, page: const FormGuiPhanHoi()),
   HomeItem(title: "Bài 12", icon: Icons.shopping_cart, page: const MyProduct()),
   HomeItem(title: "Bài 13", icon: Icons.newspaper, page: const NewsList()),
   HomeItem(title: "Bài 14", icon: Icons.person, page: const ProfileScreen()),
